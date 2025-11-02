@@ -1,8 +1,0 @@
-target/
-.project/
-.classpath/
-.settings/
-.vscode/
-.idea/
-*.iml
-.DS_Store

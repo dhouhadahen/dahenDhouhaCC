@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketMachine.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TicketMachineMaven_0</a> &gt; <a href="index.source.html" class="el_package">ticketmachine</a> &gt; <span class="el_source">TicketMachine.java</span></div><h1>TicketMachine.java</h1><pre class="source lang-java linenums">package ticketmachine;
+
+/**
+ * TicketMachine models a naive ticket machine that issues flat-fare tickets. The price of a ticket is specified via the
+ * constructor. It is a naive machine in the sense that it trusts its users to insert enough money before trying to print a
+ * ticket. It also assumes that users enter sensible amounts.
+ *
+ * @author David J. Barnes and Michael Kolling
+ * @version 2006.03.30
+ */
+public class TicketMachine {
+	// The price of a ticket from this machine.
+	private final int price;
+	// The amount of money entered by a customer so far.
+	private int balance;
+	// The total amount of money collected by this machine.
+	private int total;
+
+	/**
+	 * Create a machine that issues tickets of the given price.
+	 *
+	 * @param ticketCost the price of a ticket, &gt;=0
+	 */
+<span class="fc" id="L24">	public TicketMachine(int ticketCost) {</span>
+		// Test de validité du paramètre
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">		if (ticketCost &lt;= 0) {</span>
+<span class="nc" id="L27">			throw new IllegalArgumentException(&quot;Ticket price must be positive&quot;);</span>
+		}
+<span class="fc" id="L29">		price = ticketCost;</span>
+<span class="fc" id="L30">		balance = 0;</span>
+<span class="fc" id="L31">		total = 0;</span>
+<span class="fc" id="L32">	}</span>
+
+	/**
+	 * Return the price of a ticket.
+	 *
+	 * @return the price of tickets for this machine
+	 */
+	public int getPrice() {
+<span class="fc" id="L40">		return price;</span>
+	}
+
+	/**
+	 * Return the total amount collected by the machine.
+	 *
+	 * @return the total amount collected by the machine.
+	 */
+	public int getTotal() {
+<span class="nc" id="L49">		return total;</span>
+	}
+
+	/**
+	 * @return the amount of money already inserted for the next ticket.
+	 */
+	public int getBalance() {
+<span class="fc" id="L56">		return balance;</span>
+	}
+
+	/**
+	 * Receive an amount of money in cents from a customer.
+	 *
+	 * @param amount the amount inserted, in cents (positive)
+	 * @throws IllegalArgumentException if amount is not positive
+	 */
+	public void insertMoney(int amount) {
+<span class="fc" id="L66">		balance = balance + amount;</span>
+<span class="fc" id="L67">	}</span>
+
+	/**
+	 * Refunds the balance to customer
+	 *
+	 * @return the balance
+	 */
+	public int refund() {
+<span class="nc" id="L75">		System.out.println(&quot;Je vous rends : &quot; + balance + &quot; centimes&quot;);</span>
+<span class="nc" id="L76">		return balance;</span>
+	}
+
+	/**
+	 * Print a ticket. Update the total collected and reduce the balance 
+	 *
+	 * @return vrai si le ticket a été imprimé, faux sinon
+	 */
+	public boolean printTicket() {
+		// Simulate the printing of a ticket.
+<span class="nc" id="L86">		System.out.println(&quot;##################&quot;);</span>
+<span class="nc" id="L87">		System.out.println(&quot;# The BlueJ Line&quot;);</span>
+<span class="nc" id="L88">		System.out.println(&quot;# Ticket&quot;);</span>
+<span class="nc" id="L89">		System.out.println(&quot;# &quot; + price + &quot; cents.&quot;);</span>
+<span class="nc" id="L90">		System.out.println(&quot;##################&quot;);</span>
+<span class="nc" id="L91">		System.out.println();</span>
+<span class="nc" id="L92">		return true;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
